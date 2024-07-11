@@ -4,4 +4,6 @@ project(ActivityRegister)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(ActivityRegister main.cpp
-        Activity.h)
+        Activity.h
+        Register.h
+        Register.cpp)
