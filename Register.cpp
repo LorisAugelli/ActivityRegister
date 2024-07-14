@@ -28,3 +28,7 @@ void Register::removeActivity(int id) {
     }
 
 }
+
+list<Activity> & Register::getActivities(){
+    return Register::activities;
+}

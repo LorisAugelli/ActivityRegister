@@ -17,6 +17,7 @@ public:
     void removeActivity(int id);
     int getIdActivities();
     void incrementIdActivities();
+    list<Activity> & getActivities();
 
 private:
    list<Activity> activities;

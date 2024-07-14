@@ -14,10 +14,15 @@ public:
         this->id=id;
         this->activityName=name;
         this->description=desc;
-        this->hStart=hStart;
-        this->mStart=mStart;
-        this->hEnd=hEnd;
-        this->mEnd=mEnd;
+        if(!checkHour(hStart) || !checkHour(hEnd) || !checkMinute(mStart) || !checkMinute(mEnd))
+            throw invalid_argument("Invalid activity hour or minute");
+        else{
+            this->hStart=hStart;
+            this->mStart=mStart;
+            this->hEnd=hEnd;
+            this->mEnd=mEnd;
+        }
+
     }
 
     const string &getDescription() const {
