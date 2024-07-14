@@ -40,28 +40,46 @@ public:
         return id;
     }
 
+    bool checkHour(int h){
+        if (h<24 && h>=0)
+            return true;
+        return false;
+    }
+
+    bool checkMinute(int m){
+        if (m>=0 and m<60)
+            return true;
+        return false;
+    }
+
     int getHStart() const {
         return hStart;
     }
 
     void setHStart(int hStart) {
-        Activity::hStart = hStart;
+        if (checkHour(hStart))
+            Activity::hStart = hStart;
     }
 
     int getMStart() const {
+
         return mStart;
     }
 
     void setMStart(int mStart) {
-        Activity::mStart = mStart;
+        if (checkMinute(mStart))
+            Activity::mStart = mStart;
+
     }
 
     int getHEnd() const {
+
         return hEnd;
     }
 
     void setHEnd(int hEnd) {
-        Activity::hEnd = hEnd;
+        if (checkHour(hStart))
+            Activity::hEnd = hEnd;
     }
 
     int getMEnd() const {
@@ -69,7 +87,8 @@ public:
     }
 
     void setMEnd(int mEnd) {
-        Activity::mEnd = mEnd;
+        if (checkMinute(mEnd))
+            Activity::mEnd = mEnd;
     }
 
 private:

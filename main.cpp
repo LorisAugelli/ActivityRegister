@@ -8,3 +8,4 @@ int main() {
     registro.addActivity("palestra", "allenamento gambe", 15, 00, 17,00);
     return 0;
 }
+1
