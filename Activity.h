@@ -14,7 +14,7 @@ public:
         this->id=id;
         this->activityName=name;
         this->description=desc;
-        if(!checkHour(hStart) || !checkHour(hEnd) || !checkMinute(mStart) || !checkMinute(mEnd))
+        if(!checkHour(hStart) || !checkHour(hEnd) || !checkMinute(mStart) || !checkMinute(mEnd) || hStart>hEnd)
             throw invalid_argument("Invalid activity hour or minute");
         else{
             this->hStart=hStart;
@@ -96,6 +96,11 @@ public:
             Activity::mEnd = mEnd;
     }
 
+    string toString(){
+        string s = "";
+        return s.append(to_string(hStart)).append(":").append(to_string(mStart)).append("-").append(to_string(hEnd)).append(":").append(
+                to_string(mEnd)).append(" | ").append(activityName);
+    }
 private:
     string activityName;
     string description;
