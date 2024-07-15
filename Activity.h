@@ -67,7 +67,6 @@ public:
     }
 
     int getMStart() const {
-
         return mStart;
     }
 
@@ -94,6 +93,14 @@ public:
     void setMEnd(int mEnd) {
         if (checkMinute(mEnd))
             Activity::mEnd = mEnd;
+    }
+
+    //checks if an activity starts before a given other one
+    bool startsBefore(const Activity & otherActivity){
+        if((otherActivity.getHStart()>hStart) || (otherActivity.getHStart()==hStart && otherActivity.getMStart()>mStart)) {
+            return true;
+        }
+        return false;
     }
 
     string toString(){

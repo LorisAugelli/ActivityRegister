@@ -3,6 +3,8 @@ project(ActivityRegister)
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_subdirectory(test)
+
 find_package(wxWidgets REQUIRED core net base)
 if(wxWidgets_USE_FILE) # not defined in CONFIG mode
     include(${wxWidgets_USE_FILE})
