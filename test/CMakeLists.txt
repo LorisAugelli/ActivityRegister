@@ -6,6 +6,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(TEST_SOURCE_FILES runAllTests.cpp
         ActivityTest.cpp
+        RegisterFixture.cpp
 )
 add_executable(runActivityRegisterTests ${TEST_SOURCE_FILES})
-target_link_libraries(runActivityRegisterTests gtest gtest_main)
+target_link_libraries(runActivityRegisterTests gtest gtest_main ${CMAKE_PROJECT_NAME}_lib)

@@ -10,6 +10,11 @@ if(wxWidgets_USE_FILE) # not defined in CONFIG mode
     include(${wxWidgets_USE_FILE})
 endif()
 
+set(SOURCE_FILES
+        Activity.h
+        Register.h
+        Register.cpp)
+
 add_executable(ActivityRegister
         Activity.h
         Register.h
@@ -18,5 +23,5 @@ add_executable(ActivityRegister
         MainFrame.h
         App.cpp
         App.h)
-
-target_link_libraries(ActivityRegister ${wxWidgets_LIBRARIES})
+add_library(${CMAKE_PROJECT_NAME}_lib ${SOURCE_FILES})
+target_link_libraries(ActivityRegister ${wxWidgets_LIBRARIES} ${CMAKE_PROJECT_NAME}_lib)
