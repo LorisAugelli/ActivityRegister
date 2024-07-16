@@ -64,39 +64,26 @@ public:
         return hStart;
     }
 
-    void setHStart(int hStart) {
-        if (checkHour(hStart))
-            Activity::hStart = hStart;
-    }
+
 
     int getMStart() const {
         return mStart;
     }
 
-    void setMStart(int mStart) {
-        if (checkMinute(mStart))
-            Activity::mStart = mStart;
 
-    }
 
     int getHEnd() const {
 
         return hEnd;
     }
 
-    void setHEnd(int hEnd) {
-        if (checkHour(hStart))
-            Activity::hEnd = hEnd;
-    }
+
 
     int getMEnd() const {
         return mEnd;
     }
 
-    void setMEnd(int mEnd) {
-        if (checkMinute(mEnd))
-            Activity::mEnd = mEnd;
-    }
+
 
     //checks if an activity starts before a given other one
     bool startsBefore(const Activity & otherActivity){

@@ -40,11 +40,11 @@ void Register::addActivity(const string &name, const string &desc, int hStart, i
     incrementIdActivities();
 }
 
-void Register::removeActivity(int id) {
+void Register::removeActivity(string activity) {
 
     for (auto it = activities.begin(); it != activities.end(); ++it){
-        if (it->getId()==id)
-            activities.erase(it);
+        if (it->toString()==activity)
+            it = activities.erase(it);
     }
 
 }

@@ -13,10 +13,12 @@ class MainFrame : public wxFrame {
         MainFrame(const wxString& title);
     private:
         void OnAddActivityClicked(wxCommandEvent& evt);
+        void OnDeleteActivityClicked(wxCommandEvent& evt);
         void refreshList();
         Register registro = Register();
         wxPanel* panel;
         wxButton* addActButton;
+        wxButton* deleteActButton;
         wxTextCtrl* actName;
         wxTextCtrl* actDesc;
         wxSpinCtrl* actHStart;

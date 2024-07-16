@@ -12,6 +12,7 @@ MainFrame::MainFrame(const wxString &title): wxFrame(nullptr, wxID_ANY, title) {
     Register registro = Register();
     panel = new wxPanel(this);
     addActButton = new wxButton(panel, wxID_ANY, "Add Activity", wxDefaultPosition, wxSize(100,35));
+    deleteActButton = new wxButton(panel, wxID_ANY, "Delete Activity", wxPoint(250,200), wxSize(100,35));
     actName = new wxTextCtrl(panel, wxID_ANY, "Name", wxPoint(120,10), wxSize(100,20));
     actDesc = new wxTextCtrl(panel, wxID_ANY, "Description", wxPoint(10,50), wxSize(210,20));
     actHStart = new wxSpinCtrl(panel, wxID_ANY, "", wxPoint(230, 10), wxSize(50,20), wxSP_WRAP, 0,23);
@@ -21,6 +22,7 @@ MainFrame::MainFrame(const wxString &title): wxFrame(nullptr, wxID_ANY, title) {
     actList = new wxListBox(panel, wxID_ANY, wxPoint(10,100), wxSize(350,100));
 
     addActButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddActivityClicked, this);
+    deleteActButton->Bind(wxEVT_BUTTON, &MainFrame::OnDeleteActivityClicked, this);
 
 }
 
@@ -52,5 +54,11 @@ void MainFrame::OnAddActivityClicked(wxCommandEvent &evt) {
     }
     actName->Clear();
     actDesc->Clear();
+    refreshList();
+}
+
+void MainFrame::OnDeleteActivityClicked(wxCommandEvent &evt){
+    string selection = string(actList->GetStringSelection().mb_str());
+    registro.removeActivity(selection);
     refreshList();
 }

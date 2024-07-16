@@ -12,7 +12,7 @@ public:
     Register();
 
     void addActivity(const string &name, const string &desc, int hStart, int mStart, int hEnd, int mEnd);
-    void removeActivity(int id);
+    void removeActivity(string activity);
     int getIdActivities();
     void incrementIdActivities();
     list<Activity> & getActivities();

@@ -53,3 +53,13 @@ TEST_F(RegisterSuite, AddActivityOrderTest){
     ASSERT_EQ(r->getActivities().rbegin()->getMEnd(), 0);
 
 }
+
+TEST_F(RegisterSuite, DeleteActivityOrderTest){
+    r->addActivity("Cena", "Cotoletta", 20, 30, 21, 0);
+    r->addActivity("Doccia", "Doccia calda", 22, 0, 22, 15);
+    ASSERT_EQ(r->getIdActivities(), 2);//ensures the activities are added;
+
+    r->removeActivity("20:30-21:0 | Cena");
+    ASSERT_EQ(r->getActivities().begin()->getActivityName(), "Doccia");//now the first activity should be "Doccia"
+
+}
