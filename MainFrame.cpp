@@ -34,8 +34,7 @@ void MainFrame::refreshList() {
 }
 
 void MainFrame::OnAddActivityClicked(wxCommandEvent &evt) {
-    if (actName->GetValue().IsEmpty() || actHStart->GetValue()>actHEnd->GetValue())
-        return;
+
     string nameVal = string(actName->GetValue().mb_str());
     string descVal = string(actDesc->GetValue());
 
@@ -44,7 +43,13 @@ void MainFrame::OnAddActivityClicked(wxCommandEvent &evt) {
     int hEndVal = int(actHEnd->GetValue());
     int mStartVal = int(actMStart->GetValue());
     int mEndVal = int(actMEnd->GetValue());
-    registro.addActivity(nameVal,descVal, hStartVal, mStartVal, hEndVal, mEndVal);
+    try {
+        registro.addActivity(nameVal, descVal, hStartVal, mStartVal, hEndVal, mEndVal);
+    }
+    catch (invalid_argument &e){
+        wxMessageDialog dialog(this, e.what(), "Message");
+        dialog.ShowModal();
+    }
     actName->Clear();
     actDesc->Clear();
     refreshList();

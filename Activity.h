@@ -11,17 +11,20 @@ using namespace std;
 class Activity {
 public:
     Activity(int id, const string &name, const string &desc, int hStart, int mStart, int hEnd, int mEnd){
+        if (name.empty())
+            throw invalid_argument("Name can't be empty.");
+
+        if(!checkHour(hStart) || !checkHour(hEnd) || !checkMinute(mStart) || !checkMinute(mEnd) || hStart>hEnd)
+            throw invalid_argument("Invalid activity hour or minute.");
+
         this->id=id;
         this->activityName=name;
         this->description=desc;
-        if(!checkHour(hStart) || !checkHour(hEnd) || !checkMinute(mStart) || !checkMinute(mEnd) || hStart>hEnd)
-            throw invalid_argument("Invalid activity hour or minute");
-        else{
-            this->hStart=hStart;
-            this->mStart=mStart;
-            this->hEnd=hEnd;
-            this->mEnd=mEnd;
-        }
+        this->hStart=hStart;
+        this->mStart=mStart;
+        this->hEnd=hEnd;
+        this->mEnd=mEnd;
+
 
     }
 
