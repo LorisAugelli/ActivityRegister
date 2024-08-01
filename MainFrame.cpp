@@ -20,27 +20,22 @@ MainFrame::MainFrame(const wxString &title): wxFrame(nullptr, wxID_ANY, title) {
     actMStart = new wxSpinCtrl(panel, wxID_ANY, "", wxPoint(290, 10), wxSize(50,20), wxSP_WRAP, 0,59);
     actMEnd = new wxSpinCtrl(panel, wxID_ANY, "", wxPoint(290, 50), wxSize(50,20), wxSP_WRAP, 0,59);
     actList = new wxListBox(panel, wxID_ANY, wxPoint(10,100), wxSize(350,100));
-
+    actNumber = new wxStaticText(panel, wxID_ANY, "Total Activities: 0", wxPoint(10,200), wxSize(100,35));
     addActButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddActivityClicked, this);
     deleteActButton->Bind(wxEVT_BUTTON, &MainFrame::OnDeleteActivityClicked, this);
-
 }
 
-void MainFrame::refreshList() {
+void MainFrame::refresh() {
     actList->Clear();
-    list<Activity> activities = registro.getActivities();
-    for (auto it = activities.begin(); it != activities.end(); ++it){
+    for (auto it=registro.getIncomingActivities(); it!= registro.getEnd(); ++it){
         actList->Insert(it->toString(), actList->GetCount());
     }
-
+    actNumber->SetLabel("Total Activities: "+to_string(registro.getNActivities()));
 }
 
 void MainFrame::OnAddActivityClicked(wxCommandEvent &evt) {
-
     string nameVal = string(actName->GetValue().mb_str());
     string descVal = string(actDesc->GetValue());
-
-
     int hStartVal = int(actHStart->GetValue());
     int hEndVal = int(actHEnd->GetValue());
     int mStartVal = int(actMStart->GetValue());
@@ -54,11 +49,11 @@ void MainFrame::OnAddActivityClicked(wxCommandEvent &evt) {
     }
     actName->Clear();
     actDesc->Clear();
-    refreshList();
+    refresh();
 }
 
 void MainFrame::OnDeleteActivityClicked(wxCommandEvent &evt){
     string selection = string(actList->GetStringSelection().mb_str());
     registro.removeActivity(selection);
-    refreshList();
+    refresh();
 }

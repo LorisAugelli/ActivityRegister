@@ -9,17 +9,15 @@ using namespace std;
 #define ACTIVITYREGISTER_REGISTER_H
 class Register{
 public:
-    Register();
-
+    Register()=default;
     void addActivity(const string &name, const string &desc, int hStart, int mStart, int hEnd, int mEnd);
-    void removeActivity(string activity);
-    int getIdActivities();
-    void incrementIdActivities();
-    list<Activity> & getActivities();
-
-
+    void removeActivity(const string &activity);
+    int getNActivities() const;
+    list<Activity>::const_iterator getIncomingActivities() const;
+    list<Activity>::const_iterator getStart() const;
+    list<Activity>::const_iterator getEnd() const;
+    list<Activity>::const_iterator findActivity(const string &activity) const;
 private:
    list<Activity> activities;
-   int idActivities;
 };
 #endif //ACTIVITYREGISTER_REGISTER_H

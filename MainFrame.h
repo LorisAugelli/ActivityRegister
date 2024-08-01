@@ -14,7 +14,7 @@ class MainFrame : public wxFrame {
     private:
         void OnAddActivityClicked(wxCommandEvent& evt);
         void OnDeleteActivityClicked(wxCommandEvent& evt);
-        void refreshList();
+        void refresh();
         Register registro = Register();
         wxPanel* panel;
         wxButton* addActButton;
@@ -26,6 +26,7 @@ class MainFrame : public wxFrame {
         wxSpinCtrl* actMStart;
         wxSpinCtrl* actMEnd;
         wxListBox* actList;
+        wxStaticText* actNumber;
 
 };
 
